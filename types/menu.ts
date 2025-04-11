@@ -15,6 +15,7 @@ type Meal = {
 export type DailyMenu = {
   dayIndex: number;
   dayName: string;
+  date: string;
   breakfast: Meal;
   lunch: Meal;
   dinner: Meal;

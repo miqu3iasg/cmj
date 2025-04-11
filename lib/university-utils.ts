@@ -158,6 +158,7 @@ export const getCurrentDayMenu = () => {
       {
         dayIndex: 1, // Segunda
         dayName: "Segunda-feira",
+        date: "2023-10-02",
         breakfast: {
           drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE FRUTAS",
           protein: "BEBIDA 1 OPÇÃO 300 ML",
@@ -189,6 +190,7 @@ export const getCurrentDayMenu = () => {
       {
         dayIndex: 2, // Terça
         dayName: "Terça-feira",
+        date: "2023-10-04",
         breakfast: {
           drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE MANGA",
           protein: "OVOS MEXIDOS",
@@ -224,6 +226,7 @@ export const getCurrentDayMenu = () => {
       {
         dayIndex: 3, // Quarta
         dayName: "Quarta-feira",
+        date: "2023-10-05",
         breakfast: {
           drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE ACEROLA",
           protein: "PÃO C/ QUEIJO E PRESUNTO",
@@ -259,6 +262,7 @@ export const getCurrentDayMenu = () => {
       {
         dayIndex: 4, // Quinta
         dayName: "Quinta-feira",
+        date: "2023-10-06",
         breakfast: {
           drinks: "CAFÉ C/ LEITE OU CAFÉ, OU JENIPAPO",
           protein: "IOGURTE",
@@ -289,6 +293,7 @@ export const getCurrentDayMenu = () => {
       {
         dayIndex: 5, // Sexta
         dayName: "Sexta-feira",
+        date: "2023-10-07",
         breakfast: {
           drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE TAMARINDO",
           protein: "FRANGO DESFIADO",
@@ -319,6 +324,7 @@ export const getCurrentDayMenu = () => {
       {
         dayIndex: 6, // Sábado
         dayName: "Sábado",
+        date: "2023-10-08",
         breakfast: {
           drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE UMBU",
           protein: "OVOS C/ ORÉGANO",
