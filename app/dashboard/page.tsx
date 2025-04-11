@@ -19,10 +19,10 @@ import {
 } from "@/lib/schedule-utils"
 import { Badge } from "@/components/ui/badge"
 import { getNextBusTime, getCurrentDayMenu } from "@/lib/university-utils"
-import { DailyMenu } from "@/types/menu"
+import { DailyMenu, WeeklyMenu } from "@/types/menu"
 
 export default function Dashboard() {
- // const isMobile = useMobile()
+  // const isMobile = useMobile()
   const [classes, setClasses] = useState<ClassSchedule[]>([])
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [nextBus, setNextBus] = useState<{ time: string; location: string } | null>(null)
@@ -630,7 +630,7 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
 }
 
 function RestaurantContent() {
-  const [weeklyMenu, setWeeklyMenu] = useState(null)
+  const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu | null>(null)
   const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay() || 1) // 1-6 para Segunda-Sábado
 
   useEffect(() => {
@@ -959,9 +959,11 @@ function RestaurantContent() {
                     <div>
                       <p className="text-sm font-medium">Guarnição</p>
                       <ul className="text-sm list-disc pl-5">
-                        {selectedDayMenu.lunch.sides.map((side: string, index: number) => (
-                          <li key={index}>{side}</li>
-                        ))}
+                        ...{(selectedDayMenu.lunch.sides && Array.isArray(selectedDayMenu.lunch.sides))  &&
+                          selectedDayMenu.lunch.sides.map((side: string, index: number) => (
+                            <li key={index}>{side}</li>
+                          ))
+                        }
                       </ul>
                     </div>
                     <div>
@@ -1007,9 +1009,11 @@ function RestaurantContent() {
                     <div>
                       <p className="text-sm font-medium">Acompanhamento</p>
                       <ul className="text-sm list-disc pl-5">
-                        {selectedDayMenu.dinner.sides.map((side: string, index: number) => (
-                          <li key={index}>{side}</li>
-                        ))}
+                      ...{(selectedDayMenu.dinner.sides && Array.isArray(selectedDayMenu.dinner.sides))  &&
+                          selectedDayMenu.dinner.sides.map((side: string, index: number) => (
+                            <li key={index}>{side}</li>
+                          ))
+                        }
                       </ul>
                     </div>
                     <div>
