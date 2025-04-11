@@ -20,3 +20,7 @@ export type DailyMenu = {
   lunch: Meal;
   dinner: Meal;
 };
+
+export type WeeklyMenu = {
+  days: DailyMenu[]
+}
