@@ -170,7 +170,7 @@ export default function Dashboard() {
   )
 }
 
-function RestaurantCard({ menu }: { menu: any }) {
+function RestaurantCard({ menu }: { menu: DailyMenu | null }) {
   if (!menu) {
     return (
       <ScheduleCard
