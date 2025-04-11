@@ -25,7 +25,8 @@ export default function Dashboard() {
   const [classes, setClasses] = useState<ClassSchedule[]>([])
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [nextBus, setNextBus] = useState<{ time: string; location: string } | null>(null)
-  const [todayMenu, setTodayMenu] = useState<>(null)
+
+  const [todayMenu, setTodayMenu] = useState()
 
   // Carregar aulas salvas do localStorage
   useEffect(() => {
@@ -225,7 +226,7 @@ interface ScheduleCardProps {
   color?: string
 }
 
-function ScheduleCard({ title, description, time, location, type, professor, day, color }: ScheduleCardProps) {
+function ScheduleCard({ title, description, time, location, type, day, color }: ScheduleCardProps) {
   const getIcon = () => {
     switch (type) {
       case "class":
@@ -629,7 +630,7 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
 }
 
 function RestaurantContent() {
-  const [weeklyMenu, setWeeklyMenu] = useState<any>(null)
+  const [weeklyMenu, setWeeklyMenu] = useState(null)
   const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay() || 1) // 1-6 para Segunda-Sábado
 
   useEffect(() => {
