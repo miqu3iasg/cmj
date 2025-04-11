@@ -841,7 +841,7 @@ function RestaurantContent() {
   }, [])
 
   // Obter o cardápio do dia selecionado
-  const selectedDayMenu = weeklyMenu?.days.find((day: any) => day.dayIndex === selectedDay)
+  const selectedDayMenu = weeklyMenu?.days.find((day) => day.dayIndex === selectedDay)
 
   return (
     <div className="grid gap-4">
@@ -865,7 +865,7 @@ function RestaurantContent() {
             <CardDescription>UFRB - Outubro 2024 (3ª Semana)</CardDescription>
 
             <div className="flex flex-wrap gap-2 mt-4">
-              {weeklyMenu.days.map((day: any) => (
+              {weeklyMenu.days.map((day) => (
                 <Button
                   key={day.dayIndex}
                   variant={selectedDay === day.dayIndex ? "default" : "outline"}
