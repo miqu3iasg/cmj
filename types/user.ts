@@ -12,7 +12,7 @@ export default class User {
   isActive: boolean;
   isDeleted: boolean;
   password: string | null;
-  
+
 
   constructor(name: string, email: string, image: string, createdAt: Date, updatedAt: Date, role: string, isActive: boolean, isDeleted: boolean, password: string | null) {
     this.id = uuidv4();
@@ -27,7 +27,4 @@ export default class User {
     this.isDeleted = isDeleted;
     this.password = password;
   }
-
-
-  
 }
