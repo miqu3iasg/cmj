@@ -9,6 +9,8 @@ export async function GET(
   const users = [
     { id: 0, name: 'Rick' },
     { id: 1, name: 'Miquéias' },
+    { id: 3, name: 'Calhau' },
+  
   ];
 
   const user = users.find(({ id: userId }) => userId === id)

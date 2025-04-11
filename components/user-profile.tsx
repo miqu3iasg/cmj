@@ -15,7 +15,7 @@ interface UserProfileProps {
 }
 
 export function UserProfile({ className }: UserProfileProps) {
-  const [username, setUsername] = useState("Estudante")
+  const [username, setUsername] = useState("Aluno")
   const [isEditing, setIsEditing] = useState(false)
   const [tempUsername, setTempUsername] = useState(username)
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
