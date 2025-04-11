@@ -19,14 +19,14 @@ import {
 } from "@/lib/schedule-utils"
 import { Badge } from "@/components/ui/badge"
 import { getNextBusTime, getCurrentDayMenu } from "@/lib/university-utils"
+import { DailyMenu } from "@/types/menu"
 
 export default function Dashboard() {
  // const isMobile = useMobile()
   const [classes, setClasses] = useState<ClassSchedule[]>([])
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [nextBus, setNextBus] = useState<{ time: string; location: string } | null>(null)
-
-  const [todayMenu, setTodayMenu] = useState()
+  const [todayMenu, setTodayMenu] = useState<DailyMenu | null>(null)
 
   // Carregar aulas salvas do localStorage
   useEffect(() => {
