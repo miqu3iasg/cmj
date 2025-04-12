@@ -1,30 +1,42 @@
 import { v4 as uuidv4 } from 'uuid';
+import { z } from 'zod';
+
+export const createUserSchema = z.object({
+  fullname: z.string(),
+  nickname: z.string(),
+  email: z.string(),
+  password: z.string(),
+  authStatus: z.boolean().default(false),
+});
+
+export const updateUserSchema = z.object({
+  fullname: z.string().optional(),
+  nickname: z.string().optional(),
+})
+
+type Props = {
+  fullname: string;
+  nickname: string;
+  email: string;
+  password: string;
+  authStatus: boolean;
+};
 
 export default class User {
-  id: string;
-  name: string | null;
-  email: string | null;
-  image: string | null;
-  emailVerified: Date | null;
-  createdAt: Date;
-  updatedAt: Date;
-  role: string;
-  isActive: boolean;
-  isDeleted: boolean;
-  password: string | null;
+  private id: string
 
+  private props: Props
 
-  constructor(name: string, email: string, image: string, createdAt: Date, updatedAt: Date, role: string, isActive: boolean, isDeleted: boolean, password: string | null) {
+  constructor(
+    props: Props
+  ) {
     this.id = uuidv4();
-    this.name = name;
-    this.email = email;
-    this.image = image;
-    this.emailVerified = null;
-    this.createdAt = Date.now() > createdAt.getTime() ? createdAt : new Date();
-    this.updatedAt = Date.now() > updatedAt.getTime() ? updatedAt : new Date();
-    this.role = role;
-    this.isActive = isActive;
-    this.isDeleted = isDeleted;
-    this.password = password;
+    this.props = props
+  }
+
+  public getProps() {
+    return {
+      ...this.props,
+    }
   }
 }

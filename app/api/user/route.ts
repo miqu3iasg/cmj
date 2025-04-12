@@ -1,23 +1,34 @@
-export async function GET(request: Request) {
-  const users = [
-    { id: 0, name: 'Rick' },
-    { id: 1, name: 'Miquéias' },
-  ]
+import prisma from '@/lib/prisma';
+import User, { createUserSchema } from '@/types/user';
 
-  return new Response(JSON.stringify(users), {
+export async function GET(request: Request) {
+  const users = await prisma.user.findMany();
+
+  return new Response(users ? JSON.stringify(users) : '[]', {
     status: 200,
     headers: { 'Content-Type': 'application/json' }
-  })
+  });
 }
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { name } = body;
+  const parsedBody = createUserSchema.safeParse(body);
 
-  const newUser = { id: Date.now(), name };
+  if (!parsedBody.success) {
+    return new Response(JSON.stringify(parsedBody.error), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    })
+  };
 
-  return new Response(JSON.stringify(newUser), {
+  const props = new User(parsedBody.data).getProps();
+
+  const createdUser = await prisma.user.create({
+    data: props
+  });
+
+  return new Response(JSON.stringify(createdUser), {
     status: 201,
     headers: { 'Content-Type': 'application/json' }
-  })
+  });
 }
