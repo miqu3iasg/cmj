@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  courseId   Int?
+  email      String   @unique
+  fullname   String
+  nickname   String
+  password   String
+  authStatus Boolean
+  createdAt  DateTime @default(now())
+
+  lessons Lesson[]
+  course  Course?  @relation(fields: [courseId], references: [id])
+}
+
+model Teacher {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+  name  String
+
+  lessons Lesson[]
+}
+
+model Course {
+  id               Int            @id @default(autoincrement())
+  name             String
+  description      String
+  associatedCenter TeachingCenter
+
+  enrolledStudents User[]
+}
+
+model Lesson {
+  id         Int      @id @default(autoincrement())
+  teacherId  Int
+  scheduleId Int
+  code       String   @unique
+  subject    String
+  local      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  enrolledStudents User[]
+  teacher          Teacher @relation(fields: [teacherId], references: [id])
+}
+
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  lessonId  Int
+  weekDay   WeekDay
+  startTime DateTime
+  endTime   DateTime
+}
+
+enum WeekDay {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
+
+enum TeachingCenter {
+  CETEC
+  CCAB
+}
