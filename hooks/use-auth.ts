@@ -2,7 +2,7 @@ import type User from "@/types/user";
 import { useSession } from "next-auth/react";
 
 type UseAuthReturn = {
-  user: User; 
+  user: User;
   isAuthenticated: boolean;
   isLoading: boolean;
   updateUser: (data: User) => Promise<void>;
