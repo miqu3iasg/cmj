@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
-import React from "react"
+import React from "react";
 
-import { useState, useEffect } from "react"
-import { Calendar, Clock, MapPin, Utensils, Globe } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useMobile } from "@/hooks/use-mobile"
+import { useState, useEffect } from "react";
+import { Calendar, Clock, MapPin, Utensils, Globe } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useMobile } from "@/hooks/use-mobile";
 import {
   type ClassSchedule,
   DAYS,
@@ -16,25 +22,31 @@ import {
   getNextClass,
   isCurrentDay,
   isCurrentHour,
-} from "@/lib/schedule-utils"
-import { Badge } from "@/components/ui/badge"
-import { getNextBusTime, getCurrentDayMenu } from "@/lib/university-utils"
-import { DailyMenu, WeeklyMenu } from "@/types/menu"
+} from "@/lib/schedule-utils";
+import { Badge } from "@/components/ui/badge";
+import { getNextBusTime, getCurrentDayMenu } from "@/lib/university-utils";
+import { DailyMenu, WeeklyMenu } from "@/types/menu";
 
 export default function Dashboard() {
   // const isMobile = useMobile()
-  const [classes, setClasses] = useState<ClassSchedule[]>([])
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
-  const [nextBus, setNextBus] = useState<{ time: string; location: string } | null>(null)
-  const [todayMenu, setTodayMenu] = useState<DailyMenu | null>(null)
+  const [classes, setClasses] = useState<ClassSchedule[]>([]);
+  const [userLocation, setUserLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
+  const [nextBus, setNextBus] = useState<{
+    time: string;
+    location: string;
+  } | null>(null);
+  const [todayMenu, setTodayMenu] = useState<DailyMenu | null>(null);
 
   // Carregar aulas salvas do localStorage
   useEffect(() => {
-    const savedClasses = localStorage.getItem("userClasses")
+    const savedClasses = localStorage.getItem("userClasses");
     if (savedClasses) {
-      setClasses(JSON.parse(savedClasses))
+      setClasses(JSON.parse(savedClasses));
     }
-  }, [])
+  }, []);
 
   // Obter localização do usuário e próximo ônibus
   useEffect(() => {
@@ -42,32 +54,39 @@ export default function Dashboard() {
     const simulatedLocation = {
       lat: -12.656,
       lng: -39.087,
-    }
-    setUserLocation(simulatedLocation)
+    };
+    setUserLocation(simulatedLocation);
 
     // Obter próximo ônibus com base na localização
-    const nextBusInfo = getNextBusTime(simulatedLocation)
-    setNextBus(nextBusInfo)
-  }, [])
+    const nextBusInfo = getNextBusTime(simulatedLocation);
+    setNextBus(nextBusInfo);
+  }, []);
 
   // Obter cardápio do dia
   useEffect(() => {
-    const menu = getCurrentDayMenu()
-    setTodayMenu(menu)
-  }, [])
+    const menu = getCurrentDayMenu();
+    setTodayMenu(menu);
+  }, []);
 
-  const nextClass = getNextClass(classes)
+  const nextClass = getNextClass(classes);
 
   return (
     <div className="p-4 sm:p-6">
       <div className="flex flex-col space-y-4 sm:space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Painel</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+            Painel
+          </h1>
           <Button
             variant="ghost"
             size="sm"
             className="text-muted-foreground hover:text-foreground"
-            onClick={() => window.open("https://sistemas.ufrb.edu.br/sigaa/verTelaLogin.do", "_blank")}
+            onClick={() =>
+              window.open(
+                "https://sistemas.ufrb.edu.br/sigaa/verTelaLogin.do",
+                "_blank"
+              )
+            }
           >
             <Globe className="h-4 w-4 mr-1" />
             SIGAA
@@ -134,7 +153,9 @@ export default function Dashboard() {
                     <ScheduleCard
                       key={classItem.id}
                       title={classItem.name}
-                      description={classItem.professor || "Professor não especificado"}
+                      description={
+                        classItem.professor || "Professor não especificado"
+                      }
                       time={`${classItem.startHour}:00 - ${classItem.endHour}:00`}
                       location={classItem.location || "Local não especificado"}
                       type="class"
@@ -147,7 +168,9 @@ export default function Dashboard() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Nenhuma Aula</CardTitle>
-                    <CardDescription>Você ainda não adicionou nenhuma aula</CardDescription>
+                    <CardDescription>
+                      Você ainda não adicionou nenhuma aula
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
@@ -167,7 +190,7 @@ export default function Dashboard() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
 
 function RestaurantCard({ menu }: { menu: DailyMenu | null }) {
@@ -180,23 +203,28 @@ function RestaurantCard({ menu }: { menu: DailyMenu | null }) {
         location="Centro Estudantil, 1º Andar"
         type="restaurant"
       />
-    )
+    );
   }
 
-  const dayName = menu.dayName
-  const mainDish = menu.lunch.mainDish || "Não disponível"
+  const dayName = menu.dayName;
+  const mainDish = menu.lunch.mainDish || "Não disponível";
 
   return (
     <Card className="overflow-hidden border-t-4 border-t-amber-600">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-lg font-medium">Restaurante Universitário</CardTitle>
+        <CardTitle className="text-lg font-medium">
+          Restaurante Universitário
+        </CardTitle>
         <Utensils className="h-5 w-5 text-amber-600" />
       </CardHeader>
       <CardContent>
         <CardDescription>Cardápio de hoje ({dayName})</CardDescription>
         <div className="mt-2 space-y-1">
           <div className="flex items-center text-sm">
-            <Badge variant="outline" className="mr-2 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100">
+            <Badge
+              variant="outline"
+              className="mr-2 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100"
+            >
               Almoço
             </Badge>
             <span className="font-medium">{mainDish}</span>
@@ -212,36 +240,48 @@ function RestaurantCard({ menu }: { menu: DailyMenu | null }) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 interface ScheduleCardProps {
-  title: string
-  description: string
-  time: string
-  location: string
-  type: "class" | "bus" | "restaurant"
-  professor?: string
-  day?: string
-  color?: string
+  title: string;
+  description: string;
+  time: string;
+  location: string;
+  type: "class" | "bus" | "restaurant";
+  professor?: string;
+  day?: string;
+  color?: string;
 }
 
-function ScheduleCard({ title, description, time, location, type, day, color }: ScheduleCardProps) {
+function ScheduleCard({
+  title,
+  description,
+  time,
+  location,
+  type,
+  day,
+  color,
+}: ScheduleCardProps) {
   const getIcon = () => {
     switch (type) {
       case "class":
-        return <Calendar className="h-5 w-5 text-blue-400" />
+        return <Calendar className="h-5 w-5 text-blue-400" />;
       case "bus":
-        return <Clock className="h-5 w-5 text-blue-400" />
+        return <Clock className="h-5 w-5 text-blue-400" />;
       case "restaurant":
-        return <MapPin className="h-5 w-5 text-blue-400" />
+        return <MapPin className="h-5 w-5 text-blue-400" />;
     }
-  }
+  };
 
   return (
     <Card
       className={color ? "overflow-hidden border-t-4" : ""}
-      style={color ? { borderTopColor: color.replace("bg-", "").replace("/50", "") } : {}}
+      style={
+        color
+          ? { borderTopColor: color.replace("bg-", "").replace("/50", "") }
+          : {}
+      }
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-lg font-medium">{title}</CardTitle>
@@ -267,15 +307,15 @@ function ScheduleCard({ title, description, time, location, type, day, color }: 
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 function WeeklyCalendar({ classes }: { classes: ClassSchedule[] }) {
-  const isMobile = useMobile()
-  const days = ["Seg", "Ter", "Qua", "Qui", "Sex"]
-  const fullDays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
-  const dayIndices = [1, 2, 3, 4, 5] // Índices correspondentes aos dias da semana (1-5 para Segunda-Sexta)
-  const hours = Array.from({ length: 12 }, (_, i) => i + 8) // 8 AM to 7 PM
+  const isMobile = useMobile();
+  const days = ["Seg", "Ter", "Qua", "Qui", "Sex"];
+  const fullDays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
+  const dayIndices = [1, 2, 3, 4, 5]; // Índices correspondentes aos dias da semana (1-5 para Segunda-Sexta)
+  const hours = Array.from({ length: 12 }, (_, i) => i + 8); // 8 AM to 7 PM
 
   return (
     <Card className="col-span-full">
@@ -285,7 +325,10 @@ function WeeklyCalendar({ classes }: { classes: ClassSchedule[] }) {
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
-          <div className="grid min-w-[500px]" style={{ gridTemplateColumns: "80px repeat(5, 1fr)" }}>
+          <div
+            className="grid min-w-[500px]"
+            style={{ gridTemplateColumns: "80px repeat(5, 1fr)" }}
+          >
             <div className="sticky left-0 bg-background z-10 h-10 flex items-center justify-center font-medium border-b"></div>
             {(isMobile ? days : fullDays).map((day, index) => (
               <div
@@ -301,7 +344,13 @@ function WeeklyCalendar({ classes }: { classes: ClassSchedule[] }) {
               <React.Fragment key={hour}>
                 <div
                   className={`sticky left-0 bg-background z-10 border-b px-2 py-3 text-sm font-medium flex items-center justify-center
-                    ${isCurrentHour(hour) ? "bg-blue-900/20" : hourIndex % 2 === 0 ? "bg-muted/30" : ""}`}
+                    ${
+                      isCurrentHour(hour)
+                        ? "bg-blue-900/20"
+                        : hourIndex % 2 === 0
+                        ? "bg-muted/30"
+                        : ""
+                    }`}
                 >
                   {hour}:00
                 </div>
@@ -310,20 +359,34 @@ function WeeklyCalendar({ classes }: { classes: ClassSchedule[] }) {
                     key={`${dayIndex}-${hour}`}
                     className={`border-b px-1 py-1 min-h-[60px] relative
                       ${hourIndex % 2 === 0 ? "bg-muted/30" : ""}
-                      ${isCurrentDay(dayIndex) && isCurrentHour(hour) ? "bg-blue-900/20" : ""}`}
+                      ${
+                        isCurrentDay(dayIndex) && isCurrentHour(hour)
+                          ? "bg-blue-900/20"
+                          : ""
+                      }`}
                   >
                     {(() => {
-                      const classInSlot = getClassForTimeSlot(classes, dayIndex, hour)
+                      const classInSlot = getClassForTimeSlot(
+                        classes,
+                        dayIndex,
+                        hour
+                      );
                       if (classInSlot && hour === classInSlot.startHour) {
-                        const durationHours = classInSlot.endHour - classInSlot.startHour
+                        const durationHours =
+                          classInSlot.endHour - classInSlot.startHour;
                         return (
                           <div
                             className={`rounded ${classInSlot.color} p-1 text-xs shadow-md hover:brightness-110 transition-all`}
                             style={{
-                              height: durationHours > 1 ? `${durationHours * 60 - 8}px` : "auto",
+                              height:
+                                durationHours > 1
+                                  ? `${durationHours * 60 - 8}px`
+                                  : "auto",
                             }}
                           >
-                            <div className="font-medium">{classInSlot.name}</div>
+                            <div className="font-medium">
+                              {classInSlot.name}
+                            </div>
                             <div className="hidden sm:block">{`${classInSlot.startHour}:00 - ${classInSlot.endHour}:00`}</div>
                             {classInSlot.location && (
                               <div className="hidden sm:block text-[10px] opacity-80 truncate">
@@ -331,9 +394,9 @@ function WeeklyCalendar({ classes }: { classes: ClassSchedule[] }) {
                               </div>
                             )}
                           </div>
-                        )
+                        );
                       }
-                      return null
+                      return null;
                     })()}
                   </div>
                 ))}
@@ -343,18 +406,25 @@ function WeeklyCalendar({ classes }: { classes: ClassSchedule[] }) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
-function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng: number } | null }) {
-  const [nextBus, setNextBus] = useState<{ time: string; location: string } | null>(null)
+function BusScheduleContent({
+  userLocation,
+}: {
+  userLocation: { lat: number; lng: number } | null;
+}) {
+  const [nextBus, setNextBus] = useState<{
+    time: string;
+    location: string;
+  } | null>(null);
 
   useEffect(() => {
     if (userLocation) {
-      const nextBusInfo = getNextBusTime(userLocation)
-      setNextBus(nextBusInfo)
+      const nextBusInfo = getNextBusTime(userLocation);
+      setNextBus(nextBusInfo);
     }
-  }, [userLocation])
+  }, [userLocation]);
 
   return (
     <div className="grid gap-4">
@@ -367,8 +437,10 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
             </CardTitle>
             <CardDescription>
               O próximo ônibus passará às{" "}
-              <span className="font-bold text-blue-600 dark:text-blue-400">{nextBus.time}</span> no ponto{" "}
-              <span className="font-bold">{nextBus.location}</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400">
+                {nextBus.time}
+              </span>{" "}
+              no ponto <span className="font-bold">{nextBus.location}</span>
             </CardDescription>
           </CardHeader>
         </Card>
@@ -377,7 +449,9 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
       <Card>
         <CardHeader>
           <CardTitle>Circular UFRB - 2024.2</CardTitle>
-          <CardDescription>Horários oficiais do ônibus circular do campus</CardDescription>
+          <CardDescription>
+            Horários oficiais do ônibus circular do campus
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -403,9 +477,15 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
               </thead>
               <tbody>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Garagem</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">6:25, 9:35</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">11:30</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Garagem
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    6:25, 9:35
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    11:30
+                  </td>
                   <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
                     15:35, 16:00, 17:30
                   </td>
@@ -414,147 +494,293 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
                   </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">RU/Residências</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    RU/Residências
+                  </td>
                   <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
                     6:50, 7:10, 7:25, 7:40, 7:55
                   </td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">11:55, 12:20</td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    11:55, 12:20
+                  </td>
                   <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
                     13:25, 13:45, 14:00, 16:05
                   </td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">17:55, 18:15</td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    17:55, 18:15
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Fitotecnia</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Fitotecnia
+                  </td>
                   <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
                     6:40, 7:10, 7:25, 7:40, 7:55
                   </td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">10:00</td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    10:00
+                  </td>
                   <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
                     12:25, 13:45, 14:00
                   </td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">17:55, 18:15</td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    17:55, 18:15
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Entroncamento</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Entroncamento
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Prédio de Solos</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Prédio de Solos
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Pavilhão de Aulas I</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Pavilhão de Aulas I
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Biblioteca</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Biblioteca
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
                   <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
                     Pavilhão de Aulas II
                   </td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
                   <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
                     Pavilhão de Engenharia
                   </td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Portão 1 - Tabela</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Portão 1 - Tabela
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
                   <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
                     Ponto Externo 1 - Tabela
                   </td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
                   <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
                     Ponto Externo 2 - Tabela
                   </td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Guarita Principal</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Guarita Principal
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Biblioteca</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Biblioteca
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Reitoria</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50  dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Reitoria
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50  dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Torre/CETEC</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">-</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Torre/CETEC
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    -
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">RU/Residências</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    RU/Residências
+                  </td>
                   <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
                     6:50, 7:10, 7:25, 7:40, 7:55
                   </td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">11:55, 12:20</td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    11:55, 12:20
+                  </td>
                   <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
                     13:25, 13:45, 14:00, 16:05
                   </td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">17:55, 18:15</td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    17:55, 18:15
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Fitotecnia</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Fitotecnia
+                  </td>
                   <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
                     6:40, 7:10, 7:25, 7:40, 7:55
                   </td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">10:00</td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    10:00
+                  </td>
                   <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
                     12:25, 13:45, 14:00
                   </td>
-                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">17:55, 18:15</td>
+                  <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
+                    17:55, 18:15
+                  </td>
                 </tr>
                 <tr>
                   <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
@@ -574,10 +800,18 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
                   </td>
                 </tr>
                 <tr>
-                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">Garagem</td>
-                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">-</td>
-                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">10:35, 12:45</td>
-                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">14:30, 16:25</td>
+                  <td className="border px-3 py-2 font-medium sticky left-0 bg-background z-10">
+                    Garagem
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-amber-50/50 dark:bg-amber-950/10">
+                    -
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-orange-50/50 dark:bg-orange-950/10">
+                    10:35, 12:45
+                  </td>
+                  <td className="border px-3 py-2 text-center bg-blue-50/50 dark:bg-blue-950/10">
+                    14:30, 16:25
+                  </td>
                   <td className="border px-3 py-2 text-center bg-indigo-50/50 dark:bg-indigo-950/10">
                     18:40, 21:00, 22:50
                   </td>
@@ -588,9 +822,14 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <div>
-              <h4 className="text-sm font-medium mb-2">Informações Importantes:</h4>
+              <h4 className="text-sm font-medium mb-2">
+                Informações Importantes:
+              </h4>
               <ul className="text-sm space-y-1 list-disc pl-5">
-                <li>Os horários podem sofrer alterações em feriados e períodos especiais</li>
+                <li>
+                  Os horários podem sofrer alterações em feriados e períodos
+                  especiais
+                </li>
                 <li>O circular não opera aos domingos</li>
                 <li>Aos sábados, opera em horário reduzido até às 18:00</li>
                 <li>Em caso de dúvidas, consulte a administração do campus</li>
@@ -626,12 +865,14 @@ function BusScheduleContent({ userLocation }: { userLocation: { lat: number; lng
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
 
 function RestaurantContent() {
-  const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu | null>(null)
-  const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay() || 1) // 1-6 para Segunda-Sábado
+  const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu | null>(null);
+  const [selectedDay, setSelectedDay] = useState<number>(
+    new Date().getDay() || 1
+  ); // 1-6 para Segunda-Sábado
 
   useEffect(() => {
     // Carregar cardápio semanal
@@ -654,7 +895,12 @@ function RestaurantContent() {
             mainDish: "FRANGO À PARMEGIANA",
             secondOption: "ENSOPADO DE CARNE",
             vegetarian: "FAROFA DE SOJA",
-            sides: ["FEIJÃO CARIOCA", "ARROZ C/ CENOURA", "CENOURA RALADA COM COUVE", "ALFACE COM TOMATE E CEBOLA"],
+            sides: [
+              "FEIJÃO CARIOCA",
+              "ARROZ C/ CENOURA",
+              "CENOURA RALADA COM COUVE",
+              "ALFACE COM TOMATE E CEBOLA",
+            ],
             drink: "SUCO DE ACEROLA",
             dessert: "PÉ DE MOLEQUE",
             calories: "1.127,09 Kcal",
@@ -662,7 +908,11 @@ function RestaurantContent() {
           dinner: {
             drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE FRUTAS",
             protein: "BIFE BOVINO COZIDO",
-            sides: ["ARROZ C/CHEIRO VERDE", "SALADA DE CENOURA COM MAÇÃ E UVA PASSAS", "CALDO DE FEIJÃO"],
+            sides: [
+              "ARROZ C/CHEIRO VERDE",
+              "SALADA DE CENOURA COM MAÇÃ E UVA PASSAS",
+              "CALDO DE FEIJÃO",
+            ],
             bakery: "1 UND",
             vegetarian:
               "LEGUMES A CHINESA (BRÓCOLIS, CENOURA, ERVILHA EM GRÃO, COUVE FLOR, PIMENTÃO, TOMATE, CEBOLA, MOLHO SHOYU)",
@@ -699,7 +949,11 @@ function RestaurantContent() {
           dinner: {
             drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE GOIABA",
             protein: "FRANGO AO MOLHO BRANCO",
-            sides: ["ARROZ BRANCO", "GRÃO DE BICO COM TOMATE", "MASSA COM CARNE E LEGUMES"],
+            sides: [
+              "ARROZ BRANCO",
+              "GRÃO DE BICO COM TOMATE",
+              "MASSA COM CARNE E LEGUMES",
+            ],
             bakery: "1 UND",
             vegetarian: "LASANHA VEGANA/ SOPA DE MASSA COM LEGUME",
             calories: "905,9 Kcal",
@@ -735,7 +989,11 @@ function RestaurantContent() {
           dinner: {
             drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE ACEROLA",
             protein: "ISCA DE CARNE COM CEBOLA CARAMELIZADA",
-            sides: ["ARROZ COZIDO", "SALADA DE ALFACE C/ TOMATE", "LEGUMES C/ FRANGO"],
+            sides: [
+              "ARROZ COZIDO",
+              "SALADA DE ALFACE C/ TOMATE",
+              "LEGUMES C/ FRANGO",
+            ],
             bakery: "1 UND",
             vegetarian: "CUSCUZ VEGANO/SOPA DE LEGUMES",
             calories: "986 Kcal",
@@ -758,7 +1016,12 @@ function RestaurantContent() {
             mainDish: "FILÉ DE FRANGO AO MOLHO",
             secondOption: "STROGONOFF DE CARNE",
             vegetarian: "LEGUMES REFOGADO (BRÓCOLIS, CENOURA E CHUCHU)",
-            sides: ["FEIJÃO CARIOCA", "ARROZ C/ COLORAU", "BETERRABA RALADA COM MAÇÃ", "ALFACE C/ MANGA"],
+            sides: [
+              "FEIJÃO CARIOCA",
+              "ARROZ C/ COLORAU",
+              "BETERRABA RALADA COM MAÇÃ",
+              "ALFACE C/ MANGA",
+            ],
             drink: "SUCO DE UMBU",
             dessert: "GELADO DE CEREJA",
             calories: "1116,8 Kcal",
@@ -766,7 +1029,11 @@ function RestaurantContent() {
           dinner: {
             drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE CAJU",
             protein: "LOMBO SUÍNO AO MOLHO MADEIRA",
-            sides: ["MACARRÃO AO ALHO E ÓLEO", "SALADA DE CENOURA COZIDA, EM CUBOS COM ERVILHA", "CALDO DE FEIJÃO"],
+            sides: [
+              "MACARRÃO AO ALHO E ÓLEO",
+              "SALADA DE CENOURA COZIDA, EM CUBOS COM ERVILHA",
+              "CALDO DE FEIJÃO",
+            ],
             bakery: "1 UND",
             vegetarian: "LENTILHA REFOGADA",
             calories: "857 Kcal",
@@ -779,7 +1046,8 @@ function RestaurantContent() {
           breakfast: {
             drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE TAMARINDO",
             protein: "FRANGO DESFIADO",
-            vegetarian: "PASTA DE GRÃO DE BICO (GRÃO DE BICO, AZEITE, ÁGUA, PIMENTA DO REINO, AZEITE E COENTRO)",
+            vegetarian:
+              "PASTA DE GRÃO DE BICO (GRÃO DE BICO, AZEITE, ÁGUA, PIMENTA DO REINO, AZEITE E COENTRO)",
             sides: "----",
             fruit: "MAÇÃ",
             bakery: "1 UND",
@@ -789,7 +1057,12 @@ function RestaurantContent() {
             mainDish: "FEIJOADA",
             secondOption: "FRANGO EM CUBOS AO MOLHO DE CENOURA",
             vegetarian: "FEIJOADA VEGANA",
-            sides: ["FEIJÃO PRETO", "ARROZ BRANCO", "PEPINO A VINAGRETE", "COUVE C/ BACON"],
+            sides: [
+              "FEIJÃO PRETO",
+              "ARROZ BRANCO",
+              "PEPINO A VINAGRETE",
+              "COUVE C/ BACON",
+            ],
             drink: "SUCO DE FRUTAS",
             dessert: "LARANJA",
             calories: "1.108,75 Kcal",
@@ -797,7 +1070,11 @@ function RestaurantContent() {
           dinner: {
             drinks: "CAFÉ C/ LEITE OU CAFÉ, OU SUCO DE MANGA",
             protein: "FRICASSÊ DE FRANGO",
-            sides: ["ARROZ A GREGA", "CALADA DE CENOURA COZIDA, EM CUBOS COM MILHO", "CALDO DE FEIJÃO"],
+            sides: [
+              "ARROZ A GREGA",
+              "CALADA DE CENOURA COZIDA, EM CUBOS COM MILHO",
+              "CALDO DE FEIJÃO",
+            ],
             bakery: "1 UND",
             vegetarian: "FRICASSÊ VEGETARIANO DE LEGUMES/ CALDO DE ABÓBORA",
             calories: "817, 5 Kcal",
@@ -820,7 +1097,12 @@ function RestaurantContent() {
             mainDish: "PEITO DE FRANGO EMPANADO AO MOLHO DE MOSTARDA",
             secondOption: "ISCA C/ MILHO",
             vegetarian: "LENTILHA REFOGADA",
-            sides: ["FEIJÃO CARIOCA", "ARROZ TEMPERADO", "CENOURA RALADA C/ MILHO E ERVILHA", "ACELGA COM UVA PASSAS"],
+            sides: [
+              "FEIJÃO CARIOCA",
+              "ARROZ TEMPERADO",
+              "CENOURA RALADA C/ MILHO E ERVILHA",
+              "ACELGA COM UVA PASSAS",
+            ],
             drink: "SUCO DE ABACAXI (FRUTA)",
             dessert: "NEOGBON",
             calories: "1056,97 Kcal",
@@ -835,13 +1117,15 @@ function RestaurantContent() {
           },
         },
       ],
-    }
+    };
 
-    setWeeklyMenu(menu)
-  }, [])
+    setWeeklyMenu(menu);
+  }, []);
 
   // Obter o cardápio do dia selecionado
-  const selectedDayMenu = weeklyMenu?.days.find((day) => day.dayIndex === selectedDay)
+  const selectedDayMenu = weeklyMenu?.days.find(
+    (day) => day.dayIndex === selectedDay
+  );
 
   return (
     <div className="grid gap-4">
@@ -852,7 +1136,8 @@ function RestaurantContent() {
             Restaurante Universitário
           </CardTitle>
           <CardDescription>
-            Horário de funcionamento: <span className="font-medium">11:00 - 14:00 (Almoço)</span> e{" "}
+            Horário de funcionamento:{" "}
+            <span className="font-medium">11:00 - 14:00 (Almoço)</span> e{" "}
             <span className="font-medium">17:00 - 20:00 (Jantar)</span>
           </CardDescription>
         </CardHeader>
@@ -871,7 +1156,9 @@ function RestaurantContent() {
                   variant={selectedDay === day.dayIndex ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedDay(day.dayIndex)}
-                  className={isCurrentDay(day.dayIndex) ? "ring-2 ring-amber-500" : ""}
+                  className={
+                    isCurrentDay(day.dayIndex) ? "ring-2 ring-amber-500" : ""
+                  }
                 >
                   {day.dayName.split("-")[0]}
                   <span className="ml-1 text-xs opacity-70">
@@ -898,27 +1185,39 @@ function RestaurantContent() {
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     <div>
                       <p className="text-sm font-medium">Bebida</p>
-                      <p className="text-sm">{selectedDayMenu.breakfast.drinks}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.breakfast.drinks}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Proteína</p>
-                      <p className="text-sm">{selectedDayMenu.breakfast.protein}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.breakfast.protein}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Opção Vegana</p>
-                      <p className="text-sm">{selectedDayMenu.breakfast.vegetarian}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.breakfast.vegetarian}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Acompanhamento</p>
-                      <p className="text-sm">{selectedDayMenu.breakfast.sides}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.breakfast.sides}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Fruta</p>
-                      <p className="text-sm">{selectedDayMenu.breakfast.fruit}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.breakfast.fruit}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Padaria</p>
-                      <p className="text-sm">{selectedDayMenu.breakfast.bakery}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.breakfast.bakery}
+                      </p>
                     </div>
                   </div>
 
@@ -946,24 +1245,33 @@ function RestaurantContent() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div>
                       <p className="text-sm font-medium">Prato Principal</p>
-                      <p className="text-sm">{selectedDayMenu.lunch.mainDish}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.lunch.mainDish}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Segunda Opção</p>
-                      <p className="text-sm">{selectedDayMenu.lunch.secondOption}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.lunch.secondOption}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Opção Vegetariana</p>
-                      <p className="text-sm">{selectedDayMenu.lunch.vegetarian}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.lunch.vegetarian}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Guarnição</p>
                       <ul className="text-sm list-disc pl-5">
-                        ...{(selectedDayMenu.lunch.sides && Array.isArray(selectedDayMenu.lunch.sides))  &&
-                          selectedDayMenu.lunch.sides.map((side: string, index: number) => (
-                            <li key={index}>{side}</li>
-                          ))
-                        }
+                        ...
+                        {selectedDayMenu.lunch.sides &&
+                          Array.isArray(selectedDayMenu.lunch.sides) &&
+                          selectedDayMenu.lunch.sides.map(
+                            (side: string, index: number) => (
+                              <li key={index}>{side}</li>
+                            )
+                          )}
                       </ul>
                     </div>
                     <div>
@@ -1004,16 +1312,21 @@ function RestaurantContent() {
                     </div>
                     <div>
                       <p className="text-sm font-medium">Proteína</p>
-                      <p className="text-sm">{selectedDayMenu.dinner.protein}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.dinner.protein}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium">Acompanhamento</p>
                       <ul className="text-sm list-disc pl-5">
-                      ...{(selectedDayMenu.dinner.sides && Array.isArray(selectedDayMenu.dinner.sides))  &&
-                          selectedDayMenu.dinner.sides.map((side: string, index: number) => (
-                            <li key={index}>{side}</li>
-                          ))
-                        }
+                        ...
+                        {selectedDayMenu.dinner.sides &&
+                          Array.isArray(selectedDayMenu.dinner.sides) &&
+                          selectedDayMenu.dinner.sides.map(
+                            (side: string, index: number) => (
+                              <li key={index}>{side}</li>
+                            )
+                          )}
                       </ul>
                     </div>
                     <div>
@@ -1022,7 +1335,9 @@ function RestaurantContent() {
                     </div>
                     <div className="sm:col-span-2">
                       <p className="text-sm font-medium">Opção Vegetariana</p>
-                      <p className="text-sm">{selectedDayMenu.dinner.vegetarian}</p>
+                      <p className="text-sm">
+                        {selectedDayMenu.dinner.vegetarian}
+                      </p>
                     </div>
                   </div>
 
@@ -1049,5 +1364,5 @@ function RestaurantContent() {
         </Card>
       )}
     </div>
-  )
+  );
 }
