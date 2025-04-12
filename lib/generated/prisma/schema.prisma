@@ -9,23 +9,27 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   courseId   Int?
-  email      String   @unique
+  email      String     @unique
   fullname   String
   nickname   String
   password   String
-  authStatus Boolean
-  createdAt  DateTime @default(now())
+  authStatus AuthStatus @default(UNAUTHENTICATED)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
-  lessons Lesson[]
-  course  Course?  @relation(fields: [courseId], references: [id])
+  lessons    Lesson[]
+  course     Course?      @relation(fields: [courseId], references: [id])
+  Enrollment Enrollment[]
 }
 
 model Teacher {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  name  String
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   lessons Lesson[]
 }
@@ -35,6 +39,8 @@ model Course {
   name             String
   description      String
   associatedCenter TeachingCenter
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 
   enrolledStudents User[]
 }
@@ -50,7 +56,20 @@ model Lesson {
   updatedAt  DateTime @updatedAt
 
   enrolledStudents User[]
-  teacher          Teacher @relation(fields: [teacherId], references: [id])
+  teacher          Teacher      @relation(fields: [teacherId], references: [id])
+  Enrolment        Enrollment[]
+}
+
+model Enrollment {
+  userId    Int
+  lessonId  Int
+  user      User     @relation(fields: [userId], references: [id])
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, lessonId])
+  @@map("user_lessons")
 }
 
 model Schedule {
@@ -59,6 +78,8 @@ model Schedule {
   weekDay   WeekDay
   startTime DateTime
   endTime   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum WeekDay {
@@ -73,4 +94,11 @@ enum WeekDay {
 enum TeachingCenter {
   CETEC
   CCAB
+}
+
+enum AuthStatus {
+  AUTHENTICATED
+  UNAUTHENTICATED
+  PENDING
+  BLOCKED
 }
