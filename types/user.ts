@@ -19,6 +19,7 @@ export const createUserSchema = z.object({
   fullname: z.string().min(1, 'Nome completo é obrigatório'),
   nickname: z.string().min(1, 'Apelido é obrigatório'),
   email: z.string().email('Email inválido'),
+  image: z.string().optional(),
   password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
   courseId: z.number().optional(),
   authStatus: AuthStatusEnum.optional().default('UNAUTHENTICATED'),
@@ -35,6 +36,7 @@ export const updateUserSchema = z.object({
 type Props = {
   fullname: string;
   nickname: string;
+  image: string;
   email: string;
   password: string;
   courseId?: number;
@@ -74,6 +76,10 @@ export default class User {
     return this.props.email;
   }
 
+  public getImage(): string {
+    return this.props.image;
+  }
+
   public getPassword(): string {
     return this.props.password;
   }
@@ -106,6 +112,10 @@ export default class User {
     this.props.courseId = courseId;
   }
 
+  public setImage(image: string): void {
+    this.props.image = image; 
+  }
+
   public setId(id: number): void {
     this.id = id;
   }
@@ -116,6 +126,7 @@ export default class User {
     fullname: string;
     nickname: string;
     email: string;
+    image: string;
     password: string;
     courseId?: number;
     authStatus: AuthStatus;

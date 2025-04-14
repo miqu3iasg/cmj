@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import {
   BicepsFlexed,
   Mail,
@@ -19,64 +18,36 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAuth } from "@/hooks/use-auth";
 import { toast } from "@/components/ui/use-toast";
 
 interface UserProfile {
-  bio: string;
   email: string;
-  phone: string;
-  username: string;
+  nickname: string;
+  fullname: string;
+  image?: string;
   course: string;
-  occupation: string;
-  website: string;
-  isPublic: boolean;
 }
 
 export default function ProfilePage() {
-  const { user, isAuthenticated, isLoading } = useAuth();
-  const router = useRouter();
-
   const [profile, setProfile] = useState<UserProfile>({
-    bio: "",
     email: "",
-    phone: "",
-    username: "",
+    nickname: "",
+    fullname: "",
     course: "",
-    occupation: "",
-    website: "",
-    isPublic: false,
   });
 
-  // Carregar perfil salvo
   useEffect(() => {
-    if (user) {
-      const savedProfile = localStorage.getItem(`userProfile_${user.name}`);
+    if (profile) {
+      const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
     }
-  }, [user]);
-
-  // Redirecionar se não estiver autenticado
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push("/login");
-    }
-  }, [isLoading, isAuthenticated, router]);
-
-  // Mostrar loading enquanto verifica autenticação
-  if (isLoading || !isAuthenticated) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-current border-t-transparent text-blue-400" />
-      </div>
-    );
-  }
+  }, [profile]);
 
   const handleSaveProfile = () => {
-    if (user) {
-      localStorage.setItem(`userProfile_${user.name}`, JSON.stringify(profile));
+    if (profile) {
+      localStorage.setItem(`userProfile_${profile.fullname}`, JSON.stringify(profile));
 
       toast({
         title: "Perfil salvo",
@@ -116,14 +87,14 @@ export default function ProfilePage() {
             <CardContent className="space-y-6">
               <div className="flex flex-col items-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <Avatar className="h-20 w-20 border-2 border-blue-400">
-                  <AvatarImage src={user?.image || ""} />
+                  <AvatarImage src={profile?.image || ""} />
                   <AvatarFallback className="bg-blue-900 text-white text-xl">
-                    {getInitials(user?.name || "Estudante")}
+                    {getInitials(profile?.fullname || "Estudante")}
                   </AvatarFallback>
                 </Avatar>
                 <div className="text-center sm:text-left">
-                  <h3 className="text-lg font-medium">{user?.name}</h3>
-                  <p className="text-sm text-muted-foreground">@{user?.name}</p>
+                  <h3 className="text-lg font-medium">{profile?.fullname}</h3>
+                  <p className="text-sm text-muted-foreground">@{profile?.fullname}</p>
                 </div>
               </div>
 
@@ -154,9 +125,9 @@ export default function ProfilePage() {
                   <Input
                     id="username"
                     placeholder="Ex: rickzin"
-                    value={profile.username}
+                    value={profile.nickname}
                     onChange={(e) =>
-                      setProfile({ ...profile, username: e.target.value })
+                      setProfile({ ...profile, nickname: e.target.value })
                     }
                     className="rounded-l-none"
                   />

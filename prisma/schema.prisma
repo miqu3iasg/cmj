@@ -14,6 +14,7 @@ model User {
   email      String   @unique
   fullname   String
   nickname   String
+  image      String?
   password   String
   authStatus Boolean
   createdAt  DateTime @default(now())

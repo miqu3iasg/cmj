@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import User, { createUserSchema } from '@/types/user';
 
-export async function GET(request: Request) {
+export async function GET() {
   const users = await prisma.user.findMany();
 
   return new Response(users ? JSON.stringify(users) : '[]', {
@@ -21,10 +21,15 @@ export async function POST(request: Request) {
     })
   };
 
-  const props = new User(parsedBody.data).getProps();
+  const props = new User({
+    ...parsedBody.data,
+    image: parsedBody.data.image ?? ''
+  }).getProps();
+
+  const { id, ...propsWithoutId } = props;
 
   const createdUser = await prisma.user.create({
-    data: props
+    data: propsWithoutId
   });
 
   return new Response(JSON.stringify(createdUser), {
