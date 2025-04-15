@@ -1,13 +1,16 @@
+import "./globals.css"
+
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
-import { Sonner } from "@/components/ui/sonner"
+import { AuthProvider } from "@/components/auth-context"
+import { Toaster } from "@/components/toaster"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Painel Universitário",
+  title: "Salvaluno",
   description: "Gerencie aulas, horários de ônibus e restaurantes para estudantes universitários",
 }
 
@@ -21,10 +24,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className="dark">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
-          {children}
-          <Sonner />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <AuthProvider>
+            {children}
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

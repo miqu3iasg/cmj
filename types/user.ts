@@ -1,10 +1,11 @@
+import { generateRandomId } from '@/lib/utils';
 import { z } from 'zod';
 
 /*
 Mudei essa classe de user porque ela não estava de acordo com as
 definições do banco de dados e iria dar conflito de tipos. Agora,
 o banco e a classe estão de acordo
-*/ 
+*/
 
 export const AuthStatusEnum = z.enum([
   'AUTHENTICATED',
@@ -37,17 +38,19 @@ type Props = {
   nickname: string;
   email: string;
   password: string;
-  courseId?: number;
+  courseId?: number | undefined;
   authStatus: AuthStatus;
 };
 
 export default class User {
-  private id: number | null = null; 
+  private id: number;
   private createdAt: Date = new Date();
 
   private props: Props;
 
   constructor(props: Props) {
+    this.id = generateRandomId();
+
     this.props = {
       ...props,
       authStatus: props.authStatus ?? 'UNAUTHENTICATED',
@@ -111,13 +114,13 @@ export default class User {
   }
 
   public getProps(): Readonly<{
-    id: number | null;
+    id: number;
     createdAt: Date;
     fullname: string;
     nickname: string;
     email: string;
     password: string;
-    courseId?: number;
+    courseId?: number | undefined;
     authStatus: AuthStatus;
   }> {
     return {

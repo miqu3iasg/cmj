@@ -9,14 +9,14 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   courseId   Int?
-  email      String   @unique
+  email      String     @unique
   fullname   String
   nickname   String
   password   String
-  authStatus Boolean
-  createdAt  DateTime @default(now())
+  authStatus AuthStatus
+  createdAt  DateTime   @default(now())
 
   lessons Lesson[]
   course  Course?  @relation(fields: [courseId], references: [id])
@@ -73,4 +73,11 @@ enum WeekDay {
 enum TeachingCenter {
   CETEC
   CCAB
+}
+
+enum AuthStatus {
+  AUTHENTICATED
+  UNAUTHENTICATED
+  PENDING
+  BLOCKED
 }

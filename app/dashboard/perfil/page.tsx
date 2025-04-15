@@ -34,8 +34,10 @@ interface UserProfile {
 }
 
 export default function ProfilePage() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const router = useRouter();
+
+  const userProps = user?.getProps()
 
   const [profile, setProfile] = useState<UserProfile>({
     bio: "",
@@ -51,7 +53,7 @@ export default function ProfilePage() {
   // Carregar perfil salvo
   useEffect(() => {
     if (user) {
-      const savedProfile = localStorage.getItem(`userProfile_${user.name}`);
+      const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
@@ -60,13 +62,13 @@ export default function ProfilePage() {
 
   // Redirecionar se não estiver autenticado
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (isAuthenticated) {
       router.push("/login");
     }
-  }, [isLoading, isAuthenticated, router]);
+  }, [isAuthenticated, router]);
 
   // Mostrar loading enquanto verifica autenticação
-  if (isLoading || !isAuthenticated) {
+  if (!isAuthenticated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-current border-t-transparent text-blue-400" />
@@ -76,7 +78,7 @@ export default function ProfilePage() {
 
   const handleSaveProfile = () => {
     if (user) {
-      localStorage.setItem(`userProfile_${user.name}`, JSON.stringify(profile));
+      localStorage.setItem(`userProfile_${user.getFullname()}`, JSON.stringify(profile));
 
       toast({
         title: "Perfil salvo",

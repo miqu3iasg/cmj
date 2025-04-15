@@ -62,6 +62,16 @@ export const TeachingCenter: {
 
 export type TeachingCenter = (typeof TeachingCenter)[keyof typeof TeachingCenter]
 
+
+export const AuthStatus: {
+  AUTHENTICATED: 'AUTHENTICATED',
+  UNAUTHENTICATED: 'UNAUTHENTICATED',
+  PENDING: 'PENDING',
+  BLOCKED: 'BLOCKED'
+};
+
+export type AuthStatus = (typeof AuthStatus)[keyof typeof AuthStatus]
+
 }
 
 export type WeekDay = $Enums.WeekDay
@@ -71,6 +81,10 @@ export const WeekDay: typeof $Enums.WeekDay
 export type TeachingCenter = $Enums.TeachingCenter
 
 export const TeachingCenter: typeof $Enums.TeachingCenter
+
+export type AuthStatus = $Enums.AuthStatus
+
+export const AuthStatus: typeof $Enums.AuthStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1418,7 +1432,7 @@ export namespace Prisma {
     fullname: string | null
     nickname: string | null
     password: string | null
-    authStatus: boolean | null
+    authStatus: $Enums.AuthStatus | null
     createdAt: Date | null
   }
 
@@ -1429,7 +1443,7 @@ export namespace Prisma {
     fullname: string | null
     nickname: string | null
     password: string | null
-    authStatus: boolean | null
+    authStatus: $Enums.AuthStatus | null
     createdAt: Date | null
   }
 
@@ -1583,7 +1597,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -1681,7 +1695,7 @@ export namespace Prisma {
       fullname: string
       nickname: string
       password: string
-      authStatus: boolean
+      authStatus: $Enums.AuthStatus
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -2114,7 +2128,7 @@ export namespace Prisma {
     readonly fullname: FieldRef<"User", 'String'>
     readonly nickname: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
-    readonly authStatus: FieldRef<"User", 'Boolean'>
+    readonly authStatus: FieldRef<"User", 'AuthStatus'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -7074,9 +7088,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'AuthStatus'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type EnumAuthStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AuthStatus[]'
+   */
+  export type ListEnumAuthStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthStatus[]'>
     
 
 
@@ -7149,7 +7170,7 @@ export namespace Prisma {
     fullname?: StringFilter<"User"> | string
     nickname?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    authStatus?: BoolFilter<"User"> | boolean
+    authStatus?: EnumAuthStatusFilter<"User"> | $Enums.AuthStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     lessons?: LessonListRelationFilter
     course?: XOR<CourseNullableScalarRelationFilter, CourseWhereInput> | null
@@ -7178,7 +7199,7 @@ export namespace Prisma {
     fullname?: StringFilter<"User"> | string
     nickname?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    authStatus?: BoolFilter<"User"> | boolean
+    authStatus?: EnumAuthStatusFilter<"User"> | $Enums.AuthStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     lessons?: LessonListRelationFilter
     course?: XOR<CourseNullableScalarRelationFilter, CourseWhereInput> | null
@@ -7210,7 +7231,7 @@ export namespace Prisma {
     fullname?: StringWithAggregatesFilter<"User"> | string
     nickname?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
-    authStatus?: BoolWithAggregatesFilter<"User"> | boolean
+    authStatus?: EnumAuthStatusWithAggregatesFilter<"User"> | $Enums.AuthStatus
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
@@ -7447,7 +7468,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
     lessons?: LessonCreateNestedManyWithoutEnrolledStudentsInput
     course?: CourseCreateNestedOneWithoutEnrolledStudentsInput
@@ -7460,7 +7481,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
     lessons?: LessonUncheckedCreateNestedManyWithoutEnrolledStudentsInput
   }
@@ -7470,7 +7491,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUpdateManyWithoutEnrolledStudentsNestedInput
     course?: CourseUpdateOneWithoutEnrolledStudentsNestedInput
@@ -7483,7 +7504,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUncheckedUpdateManyWithoutEnrolledStudentsNestedInput
   }
@@ -7495,7 +7516,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
   }
 
@@ -7504,7 +7525,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7515,7 +7536,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7779,9 +7800,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type EnumAuthStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuthStatus | EnumAuthStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuthStatusFilter<$PrismaModel> | $Enums.AuthStatus
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -7908,12 +7931,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+  export type EnumAuthStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuthStatus | EnumAuthStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuthStatusWithAggregatesFilter<$PrismaModel> | $Enums.AuthStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+    _min?: NestedEnumAuthStatusFilter<$PrismaModel>
+    _max?: NestedEnumAuthStatusFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8135,8 +8160,8 @@ export namespace Prisma {
     set?: string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type EnumAuthStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AuthStatus
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -8375,9 +8400,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedEnumAuthStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuthStatus | EnumAuthStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuthStatusFilter<$PrismaModel> | $Enums.AuthStatus
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -8462,12 +8489,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+  export type NestedEnumAuthStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuthStatus | EnumAuthStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuthStatus[] | ListEnumAuthStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuthStatusWithAggregatesFilter<$PrismaModel> | $Enums.AuthStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+    _min?: NestedEnumAuthStatusFilter<$PrismaModel>
+    _max?: NestedEnumAuthStatusFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8668,7 +8697,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
     lessons?: LessonCreateNestedManyWithoutEnrolledStudentsInput
   }
@@ -8679,7 +8708,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
     lessons?: LessonUncheckedCreateNestedManyWithoutEnrolledStudentsInput
   }
@@ -8720,7 +8749,7 @@ export namespace Prisma {
     fullname?: StringFilter<"User"> | string
     nickname?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    authStatus?: BoolFilter<"User"> | boolean
+    authStatus?: EnumAuthStatusFilter<"User"> | $Enums.AuthStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
   }
 
@@ -8729,7 +8758,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
     course?: CourseCreateNestedOneWithoutEnrolledStudentsInput
   }
@@ -8741,7 +8770,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
   }
 
@@ -8883,7 +8912,7 @@ export namespace Prisma {
     fullname: string
     nickname: string
     password: string
-    authStatus: boolean
+    authStatus: $Enums.AuthStatus
     createdAt?: Date | string
   }
 
@@ -8892,7 +8921,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUpdateManyWithoutEnrolledStudentsNestedInput
   }
@@ -8903,7 +8932,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lessons?: LessonUncheckedUpdateManyWithoutEnrolledStudentsNestedInput
   }
@@ -8914,7 +8943,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8923,7 +8952,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     course?: CourseUpdateOneWithoutEnrolledStudentsNestedInput
   }
@@ -8935,7 +8964,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8946,7 +8975,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     nickname?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    authStatus?: BoolFieldUpdateOperationsInput | boolean
+    authStatus?: EnumAuthStatusFieldUpdateOperationsInput | $Enums.AuthStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
