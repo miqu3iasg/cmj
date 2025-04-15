@@ -7,21 +7,22 @@ import { AuthProvider } from "@/components/auth-context"
 import { Toaster } from "@/components/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Salvaluno",
-  description: "Gerencie aulas, horários de ônibus e restaurantes para estudantes universitários",
-}
+  title: "Painel Universitário",
+  description:
+    "Gerencie aulas, horários de ônibus e restaurantes para estudantes universitários",
+};
 
 export const viewport: Viewport = {
   themeColor: "#172554",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
