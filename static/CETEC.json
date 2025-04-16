@@ -1,5 +1,5 @@
 {
-    "materias": [
+    "disciplinas": [
                 { "codigo": "GCET252", "nome": "Gestão da Qualidade", "professor": "Carlos Alberto Tosta Machado" },
         { "codigo": "GCET256", "nome": "Projeto de TCC em Engenharia Mecânica", "professor": "Gilmar Emanoel Silva de Oliveira" },
         { "codigo": "GCET257", "nome": "Sistemas Térmicos I", "professor": "Felipe Andrade Torres" },
