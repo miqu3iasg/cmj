@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 
 import { useState, useEffect } from "react";
-import { Calendar, Clock, MapPin, Utensils, Globe } from "lucide-react";
+import { Calendar, Clock, MapPin, Utensils, Globe, } from "lucide-react";
 import {
   Card,
   CardContent,
