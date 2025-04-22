@@ -40,6 +40,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showTutorial, setShowTutorial] = useState(false)
 
   useEffect(() => {
@@ -55,7 +56,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         // Verificar se é o primeiro login
         if (parsedUser.isFirstLogin) {
           setShowTutorial(true)
-          // Atualizar o usuário para não mostrar o tutorial novamente
           const updatedUser = { ...parsedUser, isFirstLogin: false }
           localStorage.setItem("user", JSON.stringify(updatedUser))
         }
