@@ -21,38 +21,37 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/router";
+import type Cuorse from "@/types/Cuorse";
 
 interface UserProfile {
   email: string;
   nickname: string;
   fullname: string;
   image?: string;
-  course: string;
+  course: Cuorse["id"] | null; 
 }
 
 export default function ProfilePage() {
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
 
-  const userProps = user?.getProps()
+  const userProps = user?.getProps();
 
   const [profile, setProfile] = useState<UserProfile>({
     email: "",
     nickname: "",
     fullname: "",
-    course: "",
+    course: userProps?.courseId || null, // Corrected property name
   });
 
   useEffect(() => {
     if (user) {
-       localStorage.getItem(`userProfile_${user.getFullname()}`);
-    } if (profile) {
-      const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
+      const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
     }
-  }, [user, profile]);
+  }, [user]);
 
   // Redirecionar se não estiver autenticado
   useEffect(() => {
@@ -168,9 +167,9 @@ export default function ProfilePage() {
                   <Input
                     id="course"
                     placeholder="Ex: Engenharia de Computação"
-                    value={profile.course}
+                    value={profile.course?.toString() || ""}
                     onChange={(e) =>
-                      setProfile({ ...profile, course: e.target.value })
+                      setProfile({ ...profile, course: e.target.value ? parseInt(e.target.value, 10) : null })
                     }
                     className="rounded-l-none"
                   />
