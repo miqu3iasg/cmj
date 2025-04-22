@@ -26,7 +26,7 @@ interface UserProfile {
   email: string;
   nickname: string;
   fullname: string;
-  image?: string;
+  image: string;
   course: string;
 }
 
@@ -34,25 +34,25 @@ export default function ProfilePage() {
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
 
-  const userProps = user?.getProps()
 
   const [profile, setProfile] = useState<UserProfile>({
     email: "",
     nickname: "",
     fullname: "",
+    image: "",
     course: "",
   });
 
   useEffect(() => {
     if (user) {
-      const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
+      localStorage.getItem(`userProfile_${user.getFullname()}`);
     } if (profile) {
       const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
     }
-  }, [user]);
+  }, [user, profile]);
 
   // Redirecionar se não estiver autenticado
   useEffect(() => {

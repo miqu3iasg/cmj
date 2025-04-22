@@ -1,1365 +1,151 @@
 {
-  "horario_onibus_circular_ufrb_2025_1": [
-    {"route_id": "R1_1", 
-    "time": "06:25", 
-    "origin": "Garagem", 
-    "destination": "RU/Residências"},
-    {
-  "route_id": "R1_1",
-  "time": "06:50",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "07:10",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "07:25",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "07:40",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "07:55",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "08:20",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "08:35",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "08:50",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "09:05",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "09:20",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "09:35",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_1",
-  "time": "09:50",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "07:25",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "07:40",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "08:00",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "08:15",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "08:30",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "08:45",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "09:10",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "09:25",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "09:40",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "09:55",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "10:10",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "10:25",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_1",
-  "time": "10:40",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "08:35",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "08:50",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "09:10",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "09:25",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "09:40",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "09:55",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "10:20",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "10:35",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "10:50",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "11:05",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "11:20",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "11:35",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_1",
-  "time": "11:50",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "09:35",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "09:55",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "10:00",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "10:15",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "10:30",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "10:45",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "11:10",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "11:25",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "11:40",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "11:55",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "12:10",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "12:25",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_4",
-  "time": "12:40",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "10:25",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "10:45",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "11:00",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "11:15",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "11:30",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "11:45",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "12:10",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "12:25",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "12:40",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "12:55",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "13:10",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "13:25",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_4",
-  "time": "13:40",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "11:15",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "11:35",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "11:50",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "12:05",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "12:20",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "12:35",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "13:00",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "13:15",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "13:30",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "13:45",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "14:00",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "14:15",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_4",
-  "time": "14:30",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "13:00",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "13:25",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "13:40",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "13:55",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "14:10",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "14:25",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "14:50",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "15:05",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "15:20",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "15:35",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "15:50",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "16:05",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_7",
-  "time": "16:20",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "14:20",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "14:40",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "14:55",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "15:10",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "15:25",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "15:40",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "16:05",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "16:20",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "16:35",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "16:50",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "17:05",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "17:20",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_7",
-  "time": "17:35",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "15:35",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "15:55",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "16:10",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "16:25",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "16:40",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "16:55",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "17:20",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "17:35",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "17:50",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "18:05",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "18:20",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "18:35",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_7",
-  "time": "18:50",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "16:00",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "16:25",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "16:40",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "16:55",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "17:10",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "17:25",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "17:50",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "18:05",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "18:20",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "18:35",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "18:50",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "19:05",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R1_10",
-  "time": "19:20",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "17:30",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "17:55",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "18:10",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "18:25",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "18:40",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "18:55",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "19:20",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "19:35",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "19:50",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "20:05",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "20:20",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "20:35",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R2_10",
-  "time": "20:50",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "19:40",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "20:00",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "20:15",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "20:30",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "20:45",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "21:00",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "21:25",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "21:40",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "21:55",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "22:10",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "22:25",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "22:40",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R3_10",
-  "time": "22:55",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "21:00",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "21:20",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "21:35",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "21:50",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "22:05",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "22:20",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "22:45",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "23:00",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "23:15",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "23:30",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "23:45",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "00:00",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R4_10",
-  "time": "00:15",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "22:10",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "22:30",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "22:45",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "23:00",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "23:15",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "23:30",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "23:55",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "00:10",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "00:25",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "00:40",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "00:55",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "01:10",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R5_10",
-  "time": "01:25",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "23:20",
-  "origin": "Garagem",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "23:40",
-  "origin": "RU/Residências",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "23:55",
-  "origin": "Biblioteca",
-  "destination": "Prédio de Engenharias/NEAS/Eng. Florestal"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "00:10",
-  "origin": "Prédio de Engenharias/NEAS/Eng. Florestal",
-  "destination": "Pavilhão de Aulas I"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "00:25",
-  "origin": "Pavilhão de Aulas I",
-  "destination": "Pavilhão de Aulas II"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "00:40",
-  "origin": "Pavilhão de Aulas II",
-  "destination": "Portão II - Tabelionato"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "01:05",
-  "origin": "Portão II - Tabelionato",
-  "destination": "Ponto Externo I - Tabela"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "01:20",
-  "origin": "Ponto Externo I - Tabela",
-  "destination": "Guarita Principal"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "01:35",
-  "origin": "Guarita Principal",
-  "destination": "Biblioteca"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "01:50",
-  "origin": "Biblioteca",
-  "destination": "Reitoria"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "02:05",
-  "origin": "Reitoria",
-  "destination": "Torre/Cotéc"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "02:20",
-  "origin": "Torre/Cotéc",
-  "destination": "RU/Residências"
-}
-,
-    {
-  "route_id": "R6_10",
-  "time": "02:35",
-  "origin": "RU/Residências",
-  "destination": "Garagem"
-}
+  "voltas": [
+    {
+      "volta": "volta_1",
+      "horario_inicio": "06:25",
+      "horario_fim": "10:25",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_2",
+      "horario_inicio": "06:50",
+      "horario_fim": "08:20",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_3",
+      "horario_inicio": "07:10",
+      "horario_fim": "08:40",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_4",
+      "horario_inicio": "07:25",
+      "horario_fim": "08:55",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_5",
+      "horario_inicio": "07:40",
+      "horario_fim": "09:10",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_6",
+      "horario_inicio": "07:55",
+      "horario_fim": "09:25",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_7",
+      "horario_inicio": "08:35",
+      "horario_fim": "12:45",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_8",
+      "horario_inicio": "10:00",
+      "horario_fim": "11:40",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_9",
+      "horario_inicio": "11:30",
+      "horario_fim": "14:20",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_10",
+      "horario_inicio": "11:55",
+      "horario_fim": "13:35",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_11",
+      "horario_inicio": "12:20",
+      "horario_fim": "14:00",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_12",
+      "horario_inicio": "13:00",
+      "horario_fim": "16:25",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_13",
+      "horario_inicio": "13:25",
+      "horario_fim": "15:05",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_14",
+      "horario_inicio": "13:45",
+      "horario_fim": "15:25",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_15",
+      "horario_inicio": "14:00",
+      "horario_fim": "15:40",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_16",
+      "horario_inicio": "15:35",
+      "horario_fim": "18:40",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_17",
+      "horario_inicio": "16:00",
+      "horario_fim": "21:00",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_18",
+      "horario_inicio": "17:30",
+      "horario_fim": "21:00",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    },
+    {
+      "volta": "volta_19",
+      "horario_inicio": "17:55",
+      "horario_fim": "19:35",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_20",
+      "horario_inicio": "18:15",
+      "horario_fim": "19:55",
+      "local_saida": "RU/Residências",
+      "local_chegada": "Eng. Florestal"
+    },
+    {
+      "volta": "volta_21",
+      "horario_inicio": "20:40",
+      "horario_fim": "22:50",
+      "local_saida": "Garagem",
+      "local_chegada": "Garagem"
+    }
   ]
 }
