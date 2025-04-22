@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Eye, EyeOff, UserPlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useToast } from "@/components/ui/use-toast"
 import { createUserSchema } from "@/types/user"
 import { createUser } from "@/http/user/create"
+import Image from "next/image"
 
 export default function RegisterPage() {
   const [nickname, setNickname] = useState("")
@@ -73,7 +74,7 @@ export default function RegisterPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none flex items-center justify-center">
-        <img
+        <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/salvar-nos%20%282%29-Photoroom-zBpz6UiRm0PWB67OXFrbNzNqeI9Xnz.png"
           alt="Salvaluno Logo"
           className="w-[500px] h-[500px] max-w-none"

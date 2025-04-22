@@ -21,33 +21,51 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/router";
+import type Cuorse from "@/types/Cuorse";
 
 interface UserProfile {
   email: string;
   nickname: string;
   fullname: string;
+<<<<<<< HEAD
   image: string;
   course: string;
+=======
+  image?: string;
+  course: Cuorse["id"] | null; 
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
 }
 
 export default function ProfilePage() {
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
 
+<<<<<<< HEAD
+=======
+  const userProps = user?.getProps();
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
 
   const [profile, setProfile] = useState<UserProfile>({
     email: "",
     nickname: "",
     fullname: "",
+<<<<<<< HEAD
     image: "",
     course: "",
+=======
+    course: userProps?.courseId || null, // Corrected property name
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
   });
 
   useEffect(() => {
     if (user) {
+<<<<<<< HEAD
       localStorage.getItem(`userProfile_${user.getFullname()}`);
     } if (profile) {
       const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
+=======
+      const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
@@ -168,9 +186,9 @@ export default function ProfilePage() {
                   <Input
                     id="course"
                     placeholder="Ex: Engenharia de Computação"
-                    value={profile.course}
+                    value={profile.course?.toString() || ""}
                     onChange={(e) =>
-                      setProfile({ ...profile, course: e.target.value })
+                      setProfile({ ...profile, course: e.target.value ? parseInt(e.target.value, 10) : null })
                     }
                     className="rounded-l-none"
                   />
