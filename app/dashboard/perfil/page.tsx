@@ -45,14 +45,14 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (user) {
-      const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
+       localStorage.getItem(`userProfile_${user.getFullname()}`);
     } if (profile) {
       const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
     }
-  }, [user]);
+  }, [user, profile]);
 
   // Redirecionar se não estiver autenticado
   useEffect(() => {

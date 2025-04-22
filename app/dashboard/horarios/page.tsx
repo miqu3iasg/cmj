@@ -61,6 +61,51 @@ export default function SchedulePage() {
   const { toast } = useToast();
   const isMobile = useMobile();
 
+  const [disciplines, setDisciplines] = useState<string[]>([]);
+  const [suggestedProfessors, setSuggestedProfessors] = useState<string[]>([]);
+  const [suggestedSubjects, setSuggestedSubjects] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchDisciplines = async () => {
+      try {
+        const [ccabResponse, cetecResponse] = await Promise.all([
+          fetch("/static/CCAAB.json"),
+          fetch("/static/CETEC.json"),
+        ]);
+
+        const ccabData = await ccabResponse.json();
+        const cetecData = await cetecResponse.json();
+        setDisciplines([...ccabData, ...cetecData]);
+      } catch (error) {
+        console.error("Erro ao buscar disciplinas:", error);
+      }
+    };
+
+    fetchDisciplines();
+  }, []);
+
+  useEffect(() => {
+    const typedName = newClass.name?.toLowerCase();
+    const typedProfessor = newClass.professor?.toLowerCase();
+
+    setSuggestedSubjects(
+      disciplines
+        .filter(
+          (subject) =>
+            subject && subject.toLowerCase().includes(typedName || "")
+        )
+        .map((subject) => subject)
+    );
+
+    setSuggestedProfessors(
+      disciplines.filter(
+        (subject) =>
+          subject.toLowerCase().includes(typedProfessor || "") &&
+          subject.toLowerCase() !== "não informado"
+      )
+    );
+  }, [disciplines, newClass.name, newClass.professor]);
+
   // Carregar aulas salvas do localStorage
   useEffect(() => {
     const savedClasses = localStorage.getItem("userClasses");
@@ -75,6 +120,24 @@ export default function SchedulePage() {
   }, [classes]);
 
   const handleAddClass = () => {
+    const normalizedProfessor = newClass.professor?.trim().toLowerCase();
+    const normalizedDiscipline = newClass.name?.trim().toLowerCase();
+
+    const validInput = disciplines.find(
+      (discipline) =>
+        discipline.toLowerCase() === normalizedDiscipline ||
+        discipline.toLowerCase() === normalizedProfessor
+    );
+
+    if (!validInput) {
+      toast({
+        title: "Erro ao adicionar aula",
+        description: "Nome da disciplina ou professor inválido.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!newClass.name) {
       toast({
         title: "Erro ao adicionar aula",
@@ -350,6 +413,7 @@ export default function SchedulePage() {
                 </DialogHeader>
 
                 <div className="grid gap-4 py-4">
+                  {/* Disciplina */}
                   <div className="grid gap-2">
                     <Label htmlFor="name">Nome da Disciplina</Label>
                     <Input
@@ -360,8 +424,24 @@ export default function SchedulePage() {
                       }
                       placeholder="Ex: Cálculo I"
                     />
+                    {suggestedSubjects.length > 0 && (
+                      <ul className="text-sm text-muted-foreground">
+                        {suggestedSubjects.map((subject, index) => (
+                          <li
+                            key={index}
+                            className="cursor-pointer hover:text-primary"
+                            onClick={() =>
+                              setNewClass({ ...newClass, name: subject })
+                            }
+                          >
+                            {subject}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
+                  {/* Professor */}
                   <div className="grid gap-2">
                     <Label htmlFor="professor">Professor</Label>
                     <Input
@@ -372,6 +452,21 @@ export default function SchedulePage() {
                       }
                       placeholder="Ex: Dr. João Silva"
                     />
+                    {suggestedProfessors.length > 0 && (
+                      <ul className="text-sm text-muted-foreground">
+                        {suggestedProfessors.map((prof, index) => (
+                          <li
+                            key={index}
+                            className="cursor-pointer hover:text-primary"
+                            onClick={() =>
+                              setNewClass({ ...newClass, professor: prof })
+                            }
+                          >
+                            {prof}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
