@@ -119,6 +119,7 @@ export default function SchedulePage() {
     localStorage.setItem("userClasses", JSON.stringify(classes));
   }, [classes]);
 
+  // FIX: validação de professor e disciplina não funciona;
   const handleAddClass = () => {
     const normalizedProfessor = newClass.professor?.trim().toLowerCase();
     const normalizedDiscipline = newClass.name?.trim().toLowerCase();
