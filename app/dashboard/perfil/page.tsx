@@ -27,31 +27,50 @@ interface UserProfile {
   email: string;
   nickname: string;
   fullname: string;
+<<<<<<< HEAD
+  image: string;
+  course: string;
+=======
   image?: string;
   course: Cuorse["id"] | null; 
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
 }
 
 export default function ProfilePage() {
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
 
+<<<<<<< HEAD
+=======
   const userProps = user?.getProps();
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
 
   const [profile, setProfile] = useState<UserProfile>({
     email: "",
     nickname: "",
     fullname: "",
+<<<<<<< HEAD
+    image: "",
+    course: "",
+=======
     course: userProps?.courseId || null, // Corrected property name
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
   });
 
   useEffect(() => {
     if (user) {
+<<<<<<< HEAD
+      localStorage.getItem(`userProfile_${user.getFullname()}`);
+    } if (profile) {
+      const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
+=======
       const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
+>>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
     }
-  }, [user]);
+  }, [user, profile]);
 
   // Redirecionar se não estiver autenticado
   useEffect(() => {

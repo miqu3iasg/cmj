@@ -44,14 +44,15 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
+    "jmc": "file:",
     "lucide-react": "^0.487.0",
-    "next": "15.2.5",
+    "next": "^15.2.5",
     "next-auth": "^4.24.11",
     "next-themes": "^0.4.6",
     "prisma": "^6.6.0",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.3.1",
     "react-hook-form": "^7.55.0",
     "react-resizable-panels": "^2.1.7",
     "react-toast": "^1.0.3",
@@ -73,5 +74,21 @@
     "eslint-config-next": "15.2.5",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "description": "Este projeto foi desenvolvido com o objetivo de auxiliar os alunos do campus a acessar informações importantes do cotidiano.\r Qualquer reuitilização ou venda deste material sem a autorização dos criadoresé proibida e sujeita a processo judicial",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miqu3iasg/cmj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miqu3iasg/cmj/issues"
+  },
+  "homepage": "https://github.com/miqu3iasg/cmj#readme"
 }
