@@ -52,12 +52,6 @@ export default function SchedulePage() {
     color: "bg-blue-500", // Removido /50 para tirar a transparência
   });
   const [isAddingClass, setIsAddingClass] = useState(false);
-  const [isImportingFile, setIsImportingFile] = useState(false);
-  const [importStatus, setImportStatus] = useState<
-    "idle" | "processing" | "success" | "error"
-  >("idle");
-  const [importMessage, setImportMessage] = useState("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const isMobile = useMobile();
 
@@ -197,94 +191,6 @@ export default function SchedulePage() {
     });
   };
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setImportStatus("processing");
-    setImportMessage("Processando arquivo...");
-
-    // Simular processamento do arquivo
-    setTimeout(() => {
-      try {
-        const newClasses: ClassSchedule[] = [
-          {
-            id: `imported-${Date.now()}-1`,
-            name: "Cálculo I",
-            professor: "Dr. Ricardo Oliveira",
-            day: 1,
-            startHour: 8,
-            endHour: 10,
-            location: "Pavilhão de Aulas I - Sala 103",
-            color: "bg-purple-500", // Sem transparência
-          },
-          {
-            id: `imported-${Date.now()}-2`,
-            name: "Física Experimental",
-            professor: "Dra. Mariana Santos",
-            day: 2,
-            startHour: 10,
-            endHour: 12,
-            location: "Laboratório de Física - Bloco B",
-            color: "bg-green-500", // Sem transparência
-          },
-          {
-            id: `imported-${Date.now()}-3`,
-            name: "Programação Orientada a Objetos",
-            professor: "Dr. Carlos Mendes",
-            day: 3,
-            startHour: 14,
-            endHour: 16,
-            location: "Laboratório de Informática 2",
-            color: "bg-blue-500", // Sem transparência
-          },
-          {
-            id: `imported-${Date.now()}-4`,
-            name: "Estrutura de Dados",
-            professor: "Dra. Ana Ferreira",
-            day: 4,
-            startHour: 16,
-            endHour: 18,
-            location: "Pavilhão de Aulas II - Sala 205",
-            color: "bg-amber-500", // Sem transparência
-          },
-        ];
-
-        setClasses([...classes, ...newClasses]);
-        setImportStatus("success");
-        setImportMessage(
-          `Importação concluída! ${newClasses.length} aulas foram adicionadas.`
-        );
-
-        toast({
-          title: "Importação concluída",
-          description: `${newClasses.length} aulas foram importadas com sucesso.`,
-        });
-      } catch (error) {
-        setImportStatus("error");
-        setImportMessage(
-          "Erro ao processar o arquivo. Verifique o formato e tente novamente."
-        );
-        console.log(error);
-
-        toast({
-          title: "Erro na importação",
-          description:
-            "Não foi possível processar o arquivo. Verifique o formato e tente novamente.",
-          variant: "destructive",
-        });
-      }
-    }, 2000);
-  };
-
-  const resetImport = () => {
-    setImportStatus("idle");
-    setImportMessage("");
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
-
   const colorOptions = [
     { value: "bg-blue-500", label: "Azul" },
     { value: "bg-green-500", label: "Verde" },
@@ -314,89 +220,6 @@ export default function SchedulePage() {
             Horários
           </h1>
           <div className="flex gap-2">
-            <Dialog open={isImportingFile} onOpenChange={setIsImportingFile}>
-              <DialogTrigger asChild>
-                <Button variant="outline" size={isMobile ? "icon" : "default"}>
-                  <FileUp className="h-4 w-4 mr-2" />
-                  {!isMobile && "Importar"}
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Importar Horários</DialogTitle>
-                  <DialogDescription>
-                    Faça upload de um arquivo de horários para importar
-                    automaticamente suas aulas. Formatos suportados: CSV, XLS,
-                    XLSX, PDF.
-                  </DialogDescription>
-                </DialogHeader>
-
-                <div className="space-y-4">
-                  {importStatus === "idle" && (
-                    <div className="grid w-full max-w-sm items-center gap-3">
-                      <Label htmlFor="schedule-file">Arquivo de Horários</Label>
-                      <Input
-                        id="schedule-file"
-                        type="file"
-                        ref={fileInputRef}
-                        accept=".csv,.xls,.xlsx,.pdf"
-                        onChange={handleFileUpload}
-                      />
-                      <p className="text-xs text-muted-foreground">
-                        O sistema tentará extrair automaticamente as informações
-                        de aulas, professores, locais e horários.
-                      </p>
-                    </div>
-                  )}
-
-                  {importStatus === "processing" && (
-                    <div className="flex items-center justify-center py-4">
-                      <div className="h-8 w-8 animate-spin rounded-full border-4 border-current border-t-transparent text-blue-400" />
-                      <span className="ml-2">{importMessage}</span>
-                    </div>
-                  )}
-
-                  {importStatus === "success" && (
-                    <Alert className="border-green-500 bg-green-50 dark:bg-green-950/30">
-                      <Check className="h-4 w-4 text-green-500" />
-                      <AlertTitle>Importação concluída</AlertTitle>
-                      <AlertDescription>{importMessage}</AlertDescription>
-                    </Alert>
-                  )}
-
-                  {importStatus === "error" && (
-                    <Alert variant="destructive">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertTitle>Erro na importação</AlertTitle>
-                      <AlertDescription>{importMessage}</AlertDescription>
-                    </Alert>
-                  )}
-                </div>
-
-                <DialogFooter>
-                  {importStatus === "idle" && (
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsImportingFile(false)}
-                    >
-                      Cancelar
-                    </Button>
-                  )}
-
-                  {(importStatus === "success" || importStatus === "error") && (
-                    <Button
-                      onClick={() => {
-                        resetImport();
-                        setIsImportingFile(false);
-                      }}
-                    >
-                      Fechar
-                    </Button>
-                  )}
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-
             <Dialog open={isAddingClass} onOpenChange={setIsAddingClass}>
               <DialogTrigger asChild>
                 <Button>
