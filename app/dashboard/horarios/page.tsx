@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -29,8 +29,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Plus, Trash2, FileUp, AlertCircle, Check } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {
   type ClassSchedule,
@@ -42,7 +41,9 @@ import { useMobile } from "@/hooks/use-mobile";
 
 export default function SchedulePage() {
   const [classes, setClasses] = useState<ClassSchedule[]>([]);
-  const [newClass, setNewClass] = useState<Partial<ClassSchedule>>({
+  const [newClass, setNewClass] = useState<
+    Partial<ClassSchedule & { day: string | number }>
+  >({
     name: "",
     professor: "",
     day: 1, // Segunda-feira
@@ -54,51 +55,6 @@ export default function SchedulePage() {
   const [isAddingClass, setIsAddingClass] = useState(false);
   const { toast } = useToast();
   const isMobile = useMobile();
-
-  const [disciplines, setDisciplines] = useState<string[]>([]);
-  const [suggestedProfessors, setSuggestedProfessors] = useState<string[]>([]);
-  const [suggestedSubjects, setSuggestedSubjects] = useState<string[]>([]);
-
-  useEffect(() => {
-    const fetchDisciplines = async () => {
-      try {
-        const [ccabResponse, cetecResponse] = await Promise.all([
-          fetch("/static/CCAAB.json"),
-          fetch("/static/CETEC.json"),
-        ]);
-
-        const ccabData = await ccabResponse.json();
-        const cetecData = await cetecResponse.json();
-        setDisciplines([...ccabData, ...cetecData]);
-      } catch (error) {
-        console.error("Erro ao buscar disciplinas:", error);
-      }
-    };
-
-    fetchDisciplines();
-  }, []);
-
-  useEffect(() => {
-    const typedName = newClass.name?.toLowerCase();
-    const typedProfessor = newClass.professor?.toLowerCase();
-
-    setSuggestedSubjects(
-      disciplines
-        .filter(
-          (subject) =>
-            subject && subject.toLowerCase().includes(typedName || "")
-        )
-        .map((subject) => subject)
-    );
-
-    setSuggestedProfessors(
-      disciplines.filter(
-        (subject) =>
-          subject.toLowerCase().includes(typedProfessor || "") &&
-          subject.toLowerCase() !== "não informado"
-      )
-    );
-  }, [disciplines, newClass.name, newClass.professor]);
 
   // Carregar aulas salvas do localStorage
   useEffect(() => {
@@ -112,76 +68,6 @@ export default function SchedulePage() {
   useEffect(() => {
     localStorage.setItem("userClasses", JSON.stringify(classes));
   }, [classes]);
-
-  // FIX: validação de professor e disciplina não funciona;
-  const handleAddClass = () => {
-    const normalizedProfessor = newClass.professor?.trim().toLowerCase();
-    const normalizedDiscipline = newClass.name?.trim().toLowerCase();
-
-    const validInput = disciplines.find(
-      (discipline) =>
-        discipline.toLowerCase() === normalizedDiscipline ||
-        discipline.toLowerCase() === normalizedProfessor
-    );
-
-    if (!validInput) {
-      toast({
-        title: "Erro ao adicionar aula",
-        description: "Nome da disciplina ou professor inválido.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!newClass.name) {
-      toast({
-        title: "Erro ao adicionar aula",
-        description: "O nome da aula é obrigatório.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (
-      !newClass.startHour ||
-      !newClass.endHour ||
-      newClass.startHour >= newClass.endHour
-    ) {
-      toast({
-        title: "Erro ao adicionar aula",
-        description:
-          "O horário de início deve ser anterior ao horário de término.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const id = `class-${Date.now()}`;
-    // Remover transparência da cor
-    let color = newClass.color;
-    if (color && color.includes("/50")) {
-      color = color.replace("/50", "");
-    }
-
-    const classToAdd = { ...newClass, id, color } as ClassSchedule;
-
-    setClasses([...classes, classToAdd]);
-    setNewClass({
-      name: "",
-      professor: "",
-      day: 1,
-      startHour: 7,
-      endHour: 8,
-      location: "",
-      color: "bg-blue-500", // Sem transparência
-    });
-    setIsAddingClass(false);
-
-    toast({
-      title: "Aula adicionada",
-      description: `A aula ${classToAdd.name} foi adicionada com sucesso.`,
-    });
-  };
 
   const handleDeleteClass = (id: string) => {
     setClasses(classes.filter((c) => c.id !== id));
@@ -211,6 +97,85 @@ export default function SchedulePage() {
     const minutes = hour % 1 === 0 ? "00" : "30";
     return { value: hour, label: `${displayHour}:${minutes}` };
   });
+
+  function handleAddClass(): void {
+    const parsedStart = parseFloat(String(newClass.startHour));
+    const parsedEnd = parseFloat(String(newClass.endHour));
+    const parsedDay =
+      typeof newClass.day === "string" ? parseInt(newClass.day) : newClass.day;
+
+    if (
+      !newClass.name ||
+      !newClass.professor ||
+      !newClass.location ||
+      !parsedStart ||
+      !parsedEnd ||
+      !newClass.color
+    ) {
+      toast({
+        title: "Erro",
+        description:
+          "Por favor, preencha todos os campos antes de adicionar a aula.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (parsedStart >= parsedEnd) {
+      toast({
+        title: "Erro",
+        description:
+          "O horário de início deve ser menor que o horário de término.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const hasConflict = classes.some((c) => {
+      if (c.day !== newClass.day) return false;
+
+      const startA = c.startHour;
+      const endA = c.endHour;
+      const startB = newClass.startHour;
+      const endB = newClass.endHour;
+
+      // Verifica se há interseção entre os intervalos
+      return startA < endB && startB < endA;
+    });
+    if (hasConflict) {
+      toast({
+        title: "Conflito de horário",
+        description: "Já existe uma aula nesse horário.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const newClassWithId = {
+      ...newClass,
+      id: crypto.randomUUID(),
+      startHour: parsedStart,
+      endHour: parsedEnd,
+      day: parsedDay,
+    } as ClassSchedule;
+
+    setClasses((prevClasses) => [...prevClasses, newClassWithId]);
+    setNewClass({
+      name: "",
+      professor: "",
+      day: 1,
+      startHour: 7,
+      endHour: 8,
+      location: "",
+      color: "bg-blue-500",
+    });
+    setIsAddingClass(false);
+
+    toast({
+      title: "Aula adicionada",
+      description: "A aula foi adicionada com sucesso ao seu horário.",
+    });
+  }
 
   return (
     <div className="p-4 sm:p-6">
@@ -248,21 +213,6 @@ export default function SchedulePage() {
                       }
                       placeholder="Ex: Cálculo I"
                     />
-                    {suggestedSubjects.length > 0 && (
-                      <ul className="text-sm text-muted-foreground">
-                        {suggestedSubjects.map((subject, index) => (
-                          <li
-                            key={index}
-                            className="cursor-pointer hover:text-primary"
-                            onClick={() =>
-                              setNewClass({ ...newClass, name: subject })
-                            }
-                          >
-                            {subject}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
 
                   {/* Professor */}
@@ -276,21 +226,6 @@ export default function SchedulePage() {
                       }
                       placeholder="Ex: Dr. João Silva"
                     />
-                    {suggestedProfessors.length > 0 && (
-                      <ul className="text-sm text-muted-foreground">
-                        {suggestedProfessors.map((prof, index) => (
-                          <li
-                            key={index}
-                            className="cursor-pointer hover:text-primary"
-                            onClick={() =>
-                              setNewClass({ ...newClass, professor: prof })
-                            }
-                          >
-                            {prof}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
