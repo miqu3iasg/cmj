@@ -20,66 +20,45 @@ import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/use-auth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import type Cuorse from "@/types/Cuorse";
 
 interface UserProfile {
   email: string;
   nickname: string;
   fullname: string;
-<<<<<<< HEAD
-  image: string;
-  course: string;
-=======
   image?: string;
   course: Cuorse["id"] | null; 
->>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
 }
 
 export default function ProfilePage() {
-  const { user, isAuthenticated } = useAuth();
   const router = useRouter();
+  const { user, isAuthenticated } = useAuth()
 
-<<<<<<< HEAD
-=======
   const userProps = user?.getProps();
->>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
 
   const [profile, setProfile] = useState<UserProfile>({
     email: "",
     nickname: "",
     fullname: "",
-<<<<<<< HEAD
-    image: "",
-    course: "",
-=======
-    course: userProps?.courseId || null, // Corrected property name
->>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
+    course: userProps?.courseId || null,
   });
 
   useEffect(() => {
     if (user) {
-<<<<<<< HEAD
-      localStorage.getItem(`userProfile_${user.getFullname()}`);
-    } if (profile) {
-      const savedProfile = localStorage.getItem(`userProfile_${profile.fullname}`);
-=======
       const savedProfile = localStorage.getItem(`userProfile_${user.getFullname()}`);
->>>>>>> 2139b22b2681e28276958437cf2094c5c061fc56
       if (savedProfile) {
         setProfile(JSON.parse(savedProfile));
       }
     }
   }, [user, profile]);
 
-  // Redirecionar se não estiver autenticado
   useEffect(() => {
     if (isAuthenticated) {
       router.push("/login");
     }
   }, [isAuthenticated, router]);
 
-  // Mostrar loading enquanto verifica autenticação
   if (!isAuthenticated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">

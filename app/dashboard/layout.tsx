@@ -4,7 +4,7 @@ import type React from "react";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Calendar, Clock, Menu, Settings, User, X, LogOut } from "lucide-react";
+import { Calendar, Clock, Menu, User, X, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
@@ -42,7 +42,7 @@ export default function DashboardLayout({
         )}
       >
         <div className="flex h-16 items-center justify-between border-b px-6">
-          <h2 className="text-lg font-semibold tracking-tight">UniAgenda</h2>
+          <h2 className="text-lg font-semibold tracking-tight">SalvAluno</h2>
           {isMobile && (
             <Button
               variant="ghost"
@@ -88,12 +88,7 @@ export default function DashboardLayout({
               Perfil
             </Link>
           </Button>
-          <Button variant="ghost" className="w-full justify-start gap-2">
-            <Link href="/dashboard/configuracoes">
-              <Settings className="h-5 w-5 text-blue-400" />
-              Configurações
-            </Link>
-          </Button>
+      
         </nav>
 
         <div className="border-t p-4">
